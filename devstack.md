@@ -1,3 +1,4 @@
+```
 配置:150G 4C16G
 
 https://docs.openstack.org/developer/devstack/
@@ -25,3 +26,4 @@ git branch -a   #显示本地分支
 git checkout -b icehouse origin/stable/icehouse  #切换到指定icehouse分支或标签
 git clone https://github.com/openstack-dev/devstack.git  #克隆devstack的Git代码仓库
 cd ./devstack
+```
