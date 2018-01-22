@@ -74,4 +74,4 @@ SaaS的使用者通常是应用的最终用户。
 典型的 SaaS 有 Google Gmail、Salesforce 等
 ```
 
-![虚拟网络逻辑图] (虚拟网络逻辑图.png)
+![虚拟网络逻辑图] (虚拟网络逻辑图.jpg)
