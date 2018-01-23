@@ -1,17 +1,17 @@
 OpenStack 是一个分布式系统，由若干不同功能的节点（Node）组成：
-1. 控制节点（Controller Node）
+1. 控制节点（Controller Node）<br>
 管理 OpenStack，其上运行的服务有 Keystone、Glance、Horizon 以及 Nova 和 Neutron 中管理相关的组件。<br>
 控制节点也运行支持 OpenStack 的服务，例如 SQL 数据库（通常是 MySQL）、消息队列（通常是 RabbitMQ）和网络时间服务 NTP。 <br>       
 
-2. 网络节点（Network Node）
+2. 网络节点（Network Node）<br>
 其上运行的服务为 Neutron。<br>
 为 OpenStack 提供 L2 和 L3 网络。<br>
 包括虚拟机网络、DHCP、路由、NAT 等。      <br>  
 
-3. 存储节点（Storage Node）
+3. 存储节点（Storage Node）<br>
 提供块存储（Cinder）或对象存储（Swift）服务。<br>        
 
-4. 计算节点（Compute Node）
+4. 计算节点（Compute Node）<br>
 其上运行 Hypervisor（默认使用 KVM）。<br>
 同时运行 Neutron 服务的 agent，为虚拟机提供网络支持。<br>        
 
