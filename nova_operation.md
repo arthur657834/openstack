@@ -1,4 +1,4 @@
-![nova_operation](nova_operation.[png])
+![nova_operation](nova_operation.png)
 
 ### Resize 分两种情况：
 1. nova-scheduler 选择的目标节点与源节点是不同节点。操作过程跟上一节 Migrate 几乎完全一样，只是在目标节点启动 instance 的时候按新的 flavor 分配资源。 同时，因为要跨节点复制文件，也必须要保证 nova-compute 进程的启动用户（通常是 nova，也可能是 root，可以通过 ps 命令确认）能够在计算节点之间无密码访问。 
