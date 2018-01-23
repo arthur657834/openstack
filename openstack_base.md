@@ -38,3 +38,32 @@ openstack catalog list
 openstack endpoint list
 openstack role list
 ```
+
+## 基本架构
+### API 前端服务
+每个 OpenStack 组件可能包含若干子服务，其中必定有一个 API 服务负责接收客户请求。<br>
+ex: nova-api
+
+### Scheduler 调度服务
+对于某项操作，如果有多个实体都能够完成任务，那么通常会有一个 scheduler 负责从这些实体中挑选出一个最合适的来执行操作。<br>
+nova-scheduler 
+
+### Worker 工作服务
+调度服务只管分配任务，真正执行任务的是 Worker 工作服务。<br>
+nova-compute
+
+### Driver 框架
+以 Nova 为例，OpenStack 的计算节点支持多种 Hypervisor。 包括 KVM, Hyper-V, VMWare, Xen, Docker, LXC 等。 <br>
+Nova-compute 为这些 Hypervisor 定义了统一的接口，hypervisor 只需要实现这些接口，就可以 driver 的形式即插即用到 OpenStack 中。 下面是 nova driver 的架构示意图 
+![nova3](!nova3.jpg)
+开放性的体现<br>
+配置文件: /etc/nova/nova.conf<br>
+
+### Messaging 服务
+MQ, 异步调用
+* 解耦各子服务: 子服务不需要知道其他服务在哪里运行，只需要发送消息给 Messaging 就能完成调用。
+* 提高性能: 异步调用使得调用者无需等待结果返回。这样可以继续执行更多的工作，提高系统总的吞吐量。
+* 提高伸缩性: 子服务可以根据需要进行扩展，启动更多的实例处理更多的请求，在提高可用性的同时也提高了整个系统的伸缩性。而且这种变化不会影响到其他子服务，也就是说变化对别人是透明的。
+
+### Database
+各组件维护自己的状态信息
