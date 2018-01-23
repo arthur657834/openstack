@@ -15,6 +15,10 @@ OpenStack 是一个分布式系统，由若干不同功能的节点（Node）组
 其上运行 Hypervisor（默认使用 KVM）。<br>
 同时运行 Neutron 服务的 agent，为虚拟机提供网络支持。<br>        
 
+soft reboot 与 hard reboot 的区别在于：
+1. soft reboot 只是重启操作系统，整个过程中，instance 依然处于运行状态。相当于在 linux 中执行 reboot 命令
+2. hard reboot 是重启 instance，相当于关机之后再开机
+
 ![base_concept](base_concept.jpg)
 ### User:
 任何使用 OpenStack 的实体，可以是真正的用户，其他系统或者服务。
