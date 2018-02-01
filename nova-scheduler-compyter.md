@@ -7,13 +7,14 @@ Filter scheduler 是 nova-scheduler 默认的调度器，调度过程分为两�
 
 ![nova_weight](nova_weight.jpg)
 
-/etc/nova/nova.conf 中，nova 通过 scheduler_driver，scheduler_available_filters 和 scheduler_default_filters 这三个参数来配置 nova-scheduler。 
-不版本有差异
+/etc/nova/nova.conf 中，nova 通过 scheduler_driver，scheduler_available_filters 和 scheduler_default_filters 这三个参数来配置 nova-scheduler。 <br>
+不同版本有差异<br>
+```
 root@200-openstack ~]# grep -inr filter /etc/nova/nova.conf 
 35:driver = filter_scheduler
 37:[filter_scheduler]
 39:enabled_filters = RetryFilter,AvailabilityZoneFilter,ComputeFilter,ComputeCapabilitiesFilter,ImagePropertiesFilter,ServerGroupAntiAffinityFilter,ServerGroupAffinityFilter,SameHostFilter,DifferentHostFilter
-
+```
 #### RetryFilter
 RetryFilter 的作用是刷掉之前已经调度过的节点。 
 
