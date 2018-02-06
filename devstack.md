@@ -26,4 +26,30 @@ git branch -a   #显示本地分支
 git checkout -b icehouse origin/stable/icehouse  #切换到指定icehouse分支或标签
 git clone https://github.com/openstack-dev/devstack.git  #克隆devstack的Git代码仓库
 cd ./devstack
+
+devstack添加日志:
+log_dir = /var/log/nova
+chown -R stack:stack /var/log/nova
 ```
+
+修复不能新建卷的问题:
+```
+pvcreate /dev/sdb /dev/sdc
+pvdisplay <==> pvs
+
+vgcreate stack-volumes-lvmdriver-1 /dev/sdb /dev/sdc 
+vgdisplay <==> vgs
+
+新建卷组的名字可以通过以下命令获得
+[root@200-openstack ~]# grep -nir volume_ /etc/cinder/cinder.conf 
+20:osapi_volume_workers = 2
+26:default_volume_type = lvmdriver-1
+31:osapi_volume_listen = 0.0.0.0
+32:osapi_volume_extension = cinder.api.contrib.standard_extensions
+51:image_volume_cache_enabled = True
+52:volume_clear = zero
+55:volume_group = stack-volumes-lvmdriver-1
+56:volume_driver = cinder.volume.drivers.lvm.LVMVolumeDriver
+57:volume_backend_name = lvmdriver-1
+```
+
