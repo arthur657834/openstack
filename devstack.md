@@ -52,4 +52,21 @@ vgdisplay <==> vgs
 56:volume_driver = cinder.volume.drivers.lvm.LVMVolumeDriver
 57:volume_backend_name = lvmdriver-1
 ```
+### 添加cinder-backup服务
+```
+mkdir /opt/stack/backup_mount
+chown -R stack:stack /opt/stack/backup_mount
+
+vi /etc/cinder/cinder.conf 
+backup_driver = cinder.backup.drivers.nfs
+#backup_mount_point_base = /opt/stack/backup_mount
+backup_mount_point_base = $state_path/backup_mount <==> /opt/stack/data/cinder/backup_mount/1c7ba13a73edd1dc2d678fd64e440f45
+backup_share = 10.1.50.199:/data
+
+/usr/bin/python /usr/bin/cinder-backup --config-file /etc/cinder/cinder.conf
+systemctl restart devstack@c-*
+```
+
+### 日志查看
+journalctl -f --unit devstack@n-cpu.service --unit devstack@n-cond.service
 
