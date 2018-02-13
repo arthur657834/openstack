@@ -33,12 +33,14 @@ chown -R stack:stack /var/log/nova
 ```
 
 ### devstack 重启机器后重启服务
+```shell
 systemctl enable httpd
 systemctl start httpd
 ifconfig br-ex 172.24.4.1/24
 iptables -t nat -I POSTROUTING -s 172.24.4.0/24 -j MASQUERADE
 iptables -I FORWARD -s 172.24.4.0/24 -j ACCEPT
 iptables -I FORWARD -d 172.24.4.0/24 -j ACCEPT
+```
 
 ### 修复不能新建卷的问题:
 ```
