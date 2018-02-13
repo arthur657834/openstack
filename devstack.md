@@ -32,7 +32,15 @@ log_dir = /var/log/nova
 chown -R stack:stack /var/log/nova
 ```
 
-修复不能新建卷的问题:
+### devstack 重启机器后重启服务
+systemctl enable httpd
+systemctl start httpd
+ifconfig br-ex 172.24.4.1/24
+iptables -t nat -I POSTROUTING -s 172.24.4.0/24 -j MASQUERADE
+iptables -I FORWARD -s 172.24.4.0/24 -j ACCEPT
+iptables -I FORWARD -d 172.24.4.0/24 -j ACCEPT
+
+### 修复不能新建卷的问题:
 ```
 pvcreate /dev/sdb /dev/sdc
 pvdisplay <==> pvs
@@ -65,6 +73,13 @@ backup_share = 10.1.50.199:/data
 
 /usr/bin/python /usr/bin/cinder-backup --config-file /etc/cinder/cinder.conf
 systemctl restart devstack@c-*
+
+开启界面备份按钮
+vi /opt/stack/horizon/openstack_dashboard/local/local_settings.py 
+OPENSTACK_CINDER_FEATURES = {
+    'enable_backup': True,
+}
+systemctl restart httpd
 ```
 
 ### 日志查看
