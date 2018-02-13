@@ -113,6 +113,7 @@ priority=2
 gpgcheck=1
 gpgkey=https://download.ceph.com/keys/release.asc
 
+yum -y install python2-lz4 ceph
 ```
 
 ### 日志查看
