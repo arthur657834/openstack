@@ -83,6 +83,37 @@ OPENSTACK_CINDER_FEATURES = {
 }
 systemctl restart httpd
 ```
+### 添加ceph
+```
+http://docs.ceph.com/docs/master/install/get-packages/
+
+vi /etc/yum.repos.d/ceph.repo 
+
+[ceph]
+name=Ceph packages for $basearch
+baseurl=https://download.ceph.com/rpm-jewel/rhel7/$basearch
+enabled=1
+priority=2
+gpgcheck=1
+gpgkey=https://download.ceph.com/keys/release.asc
+
+[ceph-noarch]
+name=Ceph noarch packages
+baseurl=https://download.ceph.com/rpm-jewel/rhel7/noarch
+enabled=1
+priority=2
+gpgcheck=1
+gpgkey=https://download.ceph.com/keys/release.asc
+
+[ceph-source]
+name=Ceph source packages
+baseurl=https://download.ceph.com/rpm-jewel/rhel7/SRPMS
+enabled=0
+priority=2
+gpgcheck=1
+gpgkey=https://download.ceph.com/keys/release.asc
+
+```
 
 ### 日志查看
 journalctl -f --unit devstack@n-cpu.service --unit devstack@n-cond.service
