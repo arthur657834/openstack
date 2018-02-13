@@ -32,6 +32,12 @@ log_dir = /var/log/nova
 chown -R stack:stack /var/log/nova
 ```
 
+### 查看命令
+```
+source openrc admin admin
+source openrc demo demo
+```
+
 ### devstack 重启机器后重启服务
 ```shell
 systemctl enable httpd
