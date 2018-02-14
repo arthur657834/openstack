@@ -19,7 +19,7 @@ edit local.conf: add the following line to the [[local|localrc]] section.
 enable_plugin ceilometer https://git.openstack.org/openstack/ceilometer.git
 
 openstack插件列表:
-https://docs.openstack.org/developer/devstack/plugin-registry.html
+https://docs.openstack.org/horizon/latest/install/plugin-registry.html
 
 devstack安装指定版本
 git branch -a   #显示本地分支
