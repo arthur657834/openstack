@@ -3,6 +3,27 @@
 
 https://docs.openstack.org/developer/devstack/
 
+local - 在stackrc被加载前，从local.conf中提取localrc 
+post-config - 在二层服务配置之后，服务启动之前post-config将会执行 
+extra - 在各project中主服务启动之后然后在extra.d中的任何文件被执行之前 
+post-extra - 在extra.d文件被执行之后运行 
+local.conf文件是严格按照这个顺序来处理的，元数据可能将会被多次定义，如果任何值被重复设定了那么在文件中最后出现的将会被使用。
+
+ex1:
+[[post-config|/etc/nova/nova.conf]]
+[neutron]
+allow_duplicate_networks = True
+[[post-config|/etc/heat/heat.conf]]
+[DEFAULT]
+plugin_dirs=/opt/stack/gbpautomation/gbpautomation/heat
+
+ex2:
+可以使用/opt/stack/devstack/stackrc  定义的变量
+[post-config|$NOVA_CONF]]
+[scheduler]
+discover_hosts_in_cells_interval = 2
+
+
 cp samples/local.conf ./
 
 FORCE=True ./stack.sh
