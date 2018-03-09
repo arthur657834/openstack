@@ -146,3 +146,11 @@ yum -y install python2-lz4 ceph
 ### 日志查看
 journalctl -f --unit devstack@n-cpu.service --unit devstack@n-cond.service
 
+### RDO安装
+```
+RDO是红帽Red Hat Enterprise Linux OpenStack Platform的社区版
+yum update -y
+yum install -y https://rdoproject.org/repos/rdo-release.rpm
+yum install -y openstack-packstack
+packstack --allinone 安装失败之后重新尝试
+```
