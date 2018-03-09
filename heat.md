@@ -4,6 +4,13 @@ https://github.com/openstack/heat-dashboard
 heat-templates:
 https://github.com/openstack/heat-templates
 
+Tips:
+heat 要被配qos 才能用否则会报错
+```shell
+gnocchi metric list
+gnocchi resource list
+```
+
 Heat 是一个基于模板来编排复合云应用的服务。 它目前支持亚马逊的 CloudFormation 模板格式，也支持 Heat 自有的 Hot 模板格式。模板的使用简化了复杂基础设施，服务和应用的定义和部署。模板支持丰富的资源类型，不仅覆盖了常用的基础架构，包括计算、网络、存储、镜像，还覆盖了像 Ceilometer 的警报、Sahara 的集群、Trove 的实例等高级资源。
 
 ![heat_architecture](heat_architecture.png)
