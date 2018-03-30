@@ -21,6 +21,9 @@ enable_plugin ceilometer https://git.openstack.org/openstack/ceilometer.git
 openstack插件列表:
 https://docs.openstack.org/developer/devstack/plugin-registry.html
 
+openstack镜像列表
+https://docs.openstack.org/image-guide/obtain-images.html
+
 devstack安装指定版本
 git branch -a   #显示本地分支
 git checkout -b icehouse origin/stable/icehouse  #切换到指定icehouse分支或标签
